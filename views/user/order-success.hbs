@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .order-success-container {
+            text-align: center;
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .order-success-container h1 {
+            color: #28a745;
+        }
+        .order-success-container p {
+            font-size: 1.2em;
+            margin: 1em 0;
+        }
+        .order-success-container a {
+            display: inline-block;
+            margin-top: 1em;
+            padding: 0.5em 1em;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 4px;
+        }
+        .order-success-container a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="order-success-container">
+        <h1>Order Successful!</h1>
+        <p>Thank you for your purchase, <span id="user-name"></span>.</p>
+        <a href="/orders">View Your Orders</a>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/get-user-info',
+                method: 'GET',
+                success: function(data) {
+                    $('#user-name').text(data.name);
+                },
+                error: function(error) {
+                    console.log('Error fetching user info:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

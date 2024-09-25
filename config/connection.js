@@ -1,24 +1,19 @@
-const { MongoClient } = require('mongodb');
+const MongoClient = require('mongodb').MongoClient;
+const uri = process.env.MONGO_URI;
 
-const state = {
-  db: null,
-};
+let db;
 
-module.exports.connect = async function (done) {
-  console.log('Loaded MONGO_URI:', process.env.MONGO_URI); // Log to verify if MONGO_URI is loaded
-  const url = process.env.MONGO_URI; // Directly use the environment variable
-  const dbname = 'shopping';
-
+const connect = async () => {
   try {
-    const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
-    await client.connect();
-    state.db = client.db(dbname);
-    done(); // Call done() after a successful connection
+    const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+    db = client.db(); // Make sure you're assigning db correctly
+    console.log("Connected to MongoDB Atlas");
   } catch (err) {
-    done(err); // Pass the error to done() if something goes wrong
+    console.error("Database connection error:", err);
+    process.exit(1);
   }
 };
 
-module.exports.get = function () {
-  return state.db;
-};
+const get = () => db;
+
+module.exports = { connect, get };

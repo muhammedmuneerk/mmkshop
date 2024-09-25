@@ -51,10 +51,10 @@ db.connect(async (err) => {
     console.log("Connected to MongoDB Atlas");
     
     // Start the server here
-    const port = process.env.APP_PORT || 3000; // Port defined here
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-    });
+    const port = process.env.PORT || 3000; 
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
   }
 });
 

@@ -17,7 +17,7 @@
             <tbody>
                 {{#each products}}
                 <tr>
-                    <td>{{@index}}</td> <!-- Use @index to get the index of the current element -->
+                    <td>{{inc @index}}</td> <!-- Use inc helper to display index + 1 --> <!-- Use @index to get the index of the current element -->
                     <td>{{this.Name}}</td>
                     <td>{{this.Category}}</td>
                     <td>{{this.Description}}</td>

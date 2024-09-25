@@ -21,11 +21,11 @@ router.post('/add-product', (req, res) => {
       let image = req.files.Image;
       
       // Validate file type
-      const validExtensions = ['.jpg', '.jpeg'];
+      const validExtensions = ['.jpg', '.jpeg', '.png'];
       const fileExtension = path.extname(image.name).toLowerCase();
 
       if (!validExtensions.includes(fileExtension)) {
-        return res.status(400).send('Only JPG images are allowed.');
+        return res.status(400).send('Only JPG and PNG images are allowed.');
       }
 
       const imagePath = path.join(__dirname, '../public/product-images/', `${id}${fileExtension}`);
@@ -66,11 +66,11 @@ router.post('/edit-product/:id', (req, res) => {
           let image = req.files.Image;
 
           // Validate file type
-          const validExtensions = ['.jpg', '.jpeg'];
+          const validExtensions = ['.jpg', '.jpeg', '.png'];
           const fileExtension = path.extname(image.name).toLowerCase();
 
           if (!validExtensions.includes(fileExtension)) {
-              return res.status(400).send('Only JPG images are allowed.');
+              return res.status(400).send('Only JPG and PNG images are allowed.');
           }
 
           image.mv('./public/product-images/' + id + fileExtension, (err) => {

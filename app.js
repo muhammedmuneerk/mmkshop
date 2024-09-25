@@ -21,7 +21,10 @@ app.engine('hbs', hbs({
   extname: 'hbs',
   defaultLayout: 'layout',
   layoutsDir: __dirname + '/views/layout/',
-  partialsDir: __dirname + '/views/partials/'
+  partialsDir: __dirname + '/views/partials/',
+  helpers: {
+    inc: (value) => parseInt(value) + 1 // Custom helper to increment index
+  }
 }));
 
 app.use(logger('dev'));

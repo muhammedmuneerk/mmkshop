@@ -1,44 +1,158 @@
 <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="/">Shopping Cart</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand " href="/">{{! mr-auto}}
+            <img src="images/MMK (2).png" alt="Icon" class="navbar-icon">
+            <b>shop</b>
 
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Products <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cart">Cart<span class="badge badge-success" id="cart-count">{{cartCount}}</span></a>
-                    </li>
+        </a>
+        <style>
+            .navbar-icon {
+                width: 50px;
+                /* Set desired width */
+                height: 50px;
+                /* Set desired height */
+                margin-left: 5px;
+                /* Add space between text and icon */
+            }
+        </style>
+
+        <div class="collapse navbar-collapse " id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Products <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Cart<span class="badge badge-success"
+                            id="cart-count">{{cartCount}}</span></a>
+                </li>
+                {{#if user}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">Orders</a>
+                </li>
+                {{/if}}
+
+            </ul>
+            <div class="dropdown ">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{#if user}}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/orders">Orders</a>
-                    </li>
+                    {{user.Name}}
+                    {{else}}
+                    Account
                     {{/if}}
-                    
-                </ul>
-                <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    {{#if user}}
-        {{user.Name}}
-        {{else}}
-        Account
-    {{/if}}
 
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    {{#if user}}
-        <a class="dropdown-item" href="/logout">Logout</a>
-        {{else}}
-        <a class="dropdown-item" href="/login">Login</a>
-    {{/if}}
-    
-  </div>
-</div>
+                </button>
+                <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                    {{#if user}}
+                    <a class="dropdown-item" href="/logout">Logout</a>
+                    {{else}}
+                    <a class="dropdown-item" href="/login">Login</a>
+                    {{/if}}
+
+                </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
+
+{{!-- <header></header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="/">Shopping Cart</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Products <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cart">Cart <span class="badge badge-success"
+                        id="cart-count">{{cartCount}}</span></a>
+            </li>
+            {{#if user}}
+            <li class="nav-item">
+                <a class="nav-link" href="/orders">Orders</a>
+            </li>
+            {{/if}}
+        </ul>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{#if user}}
+                {{user.Name}}
+                {{else}}
+                Account
+                {{/if}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {{#if user}}
+                <a class="dropdown-item" href="/logout">Logout</a>
+                {{else}}
+                <a class="dropdown-item" href="/login">Login</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</nav>
+</header>
+
+<style>
+    .custom-navbar {
+        padding: 1rem;
+        /* Increase padding */
+        background-color: #D3D3D3;
+        /* Light Gray */
+        color: #EAEAEA;
+        /* Soft Light Gray */
+    }
+
+    .custom-navbar .nav-link {
+        font-size: 1.2rem;
+        /* Increase font size */
+        padding: 0.5rem 1rem;
+        /* Increase link padding */
+        color: #333;
+        /* Darker text color for contrast */
+    }
+
+    .custom-navbar .nav-link:hover {
+        color: #000;
+        /* Change text color on hover for better visibility */
+    }
+
+    .custom-navbar .dropdown-toggle {
+        font-size: 1.2rem;
+        /* Increase font size for dropdown */
+        color: #333;
+        /* Darker color for better visibility */
+    }
+
+    .custom-navbar .dropdown-toggle:hover {
+        color: #000;
+        /* Change dropdown text color on hover */
+    }
+
+    .dropdown-menu {
+        background-color: #F0F0F0;
+        /* Light background for dropdown */
+    }
+
+    .dropdown-item {
+        color: #333;
+        /* Darker color for dropdown items */
+    }
+
+    .dropdown-item:hover {
+        background-color: #D3D3D3;
+        /* Light gray background on hover */
+        color: #000;
+        /* Change text color on hover */
+    }
+</style> --}}

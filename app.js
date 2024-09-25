@@ -1,18 +1,18 @@
 // Load environment variables from the .env file
 require('dotenv').config(); // Ensure this is at the very top
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var userRouter = require('./routes/user');
-var adminRouter = require('./routes/admin');
-var hbs = require('express-handlebars');
-var fileUpload = require('express-fileupload');
-var session = require('express-session');
-var db = require('./config/connection');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin');
+const hbs = require('express-handlebars');
+const fileUpload = require('express-fileupload');
+const session = require('express-session');
+const db = require('./config/connection');
 
-var app = express();
+const app = express();
 
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,16 +45,16 @@ app.use(session({
 // Connect to MongoDB Atlas
 db.connect(async (err) => {
   if (err) {
-      console.log("Connection Error:", err);
-      process.exit(1); // Exit the process if there's a connection error
+    console.log("Connection Error:", err);
+    process.exit(1); // Exit the process if there's a connection error
   } else {
-      console.log("Connected to MongoDB Atlas");
-
-      // Start the server after successful database connection
-      const port = process.env.PORT || 3000;
-      app.listen(port, () => {
-          console.log(`Server running on port ${port}`);
-      });
+    console.log("Connected to MongoDB Atlas");
+    
+    // Start the server here
+    const port = process.env.APP_PORT || 3000; // Port defined here
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
   }
 });
 

@@ -43,17 +43,18 @@ app.use(session({
 }));
 
 // Connect to MongoDB Atlas
-db.connect((err) => {
+db.connect(async (err) => {
   if (err) {
-    console.log("Connection Error:", err);
-    process.exit(1); // Exit the process if there's a connection error
+      console.log("Connection Error:", err);
+      process.exit(1); // Exit the process if there's a connection error
   } else {
-    console.log("Connected to MongoDB Atlas");
-    // Start the server
-    const port = process.env.PORT || 3000;
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-    });
+      console.log("Connected to MongoDB Atlas");
+
+      // Start the server after successful database connection
+      const port = process.env.PORT || 3000;
+      app.listen(port, () => {
+          console.log(`Server running on port ${port}`);
+      });
   }
 });
 

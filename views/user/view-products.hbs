@@ -1,31 +1,38 @@
-   
-    <section>
-        <div class="container mt-5">
-            <div class="row">
-                {{#each products}}
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            {{#each products}}
+            <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3 p-3">
+                <div class="card" style="width: 15rem; height: 23rem; position: relative;">
+                    <!-- Image -->
+                    <img class="card-img-top" 
+                         src="/product-images/{{this._id}}.jpg" 
+                         alt="Product image" 
+                         style="height: 12rem; object-fit: contain;"> <!-- Updated: object-fit: contain -->
 
-                <div class="col-6 col-md-3 p-3">
-                    <div class="card" style="width: 15rem; height: 23rem;">
-                        <img class="card-img-top"
-                            src="/product-images/{{this._id}}.jpg"
-                            alt="Card image cap"
-                            style="height: 12rem;">
-                        <div class="card-body">
-                            <h5 class="card-title">{{this.Name}}</h5>
-                              <p class="card-text">Rs.{{this.Price}}</p>
-                            <p class="card-text">{{this.Description}}</p>
-                           
-                            <button onclick="addToCart('{{this._id}}')" class="btn btn-primary container">Add to Cart</button>
-                        </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <!-- Title -->
+                        <h5 class="card-title text-truncate">{{this.Name}}</h5>
+                        
+                        <!-- Price -->
+                        <p class="card-text text-truncate">Rs.{{this.Price}}</p>
+                        
+                        <!-- Description -->
+                        <p class="card-text text-truncate" style="max-height: 4rem; overflow: hidden;">
+                            {{this.Description}}
+                        </p>
+
+                        <!-- Button fixed at bottom -->
+                        <button onclick="addToCart('{{this._id}}')" 
+                                class="btn btn-primary" 
+                                style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); width: 90%;">
+                                Add to Cart
+                        </button>
                     </div>
                 </div>
-                {{/each}}
-
             </div>
+            {{/each}}
         </div>
-    </section>
-
-
-    <script>
-        
-    </script>
+    </div>
+</section>
